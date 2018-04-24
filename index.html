@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Vehicle e-Auction</title>
+
+<!-- add your javascript file here -->
+<script src="js/utilities.js"></script>
+<script src="js/eAuction.js"></script>
+
+<!-- Do not change Bootstrap.css -->
+<link href="css/bootstrap.css" rel="stylesheet" type="text/css">
+
+</head>
+
+<body style="color: #E804E7" onload="javascript:initHome();">
+
+<!--
+  Top main menu start from here. Do not change html code below unless we need
+  to add more menu item to the top main menu line
+-->
+<nav >
+  <div class="container">
+
+    <!-- display eAuction logo and Home button -->
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#" onClick="javascript:about()"><img src="images/eAuction.png" width="100" height="25" alt=""/></a>
+      <span class="navbar-brand" style="margin-top: 6px">
+      <a style="color: #D52124" href="#" onClick="javascript:home()">Home</a></span>
+    </div>
+
+    <!-- Drop-down list for Browse by category -->
+    <div class="collapse navbar-collapse">
+      <ul class="nav navbar-nav">
+        <li class="dropdown"> <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true">Browse by category<span class="caret"></span></a>
+          <ul class="dropdown-menu" style="color: #000000">
+            <li><a href="#" onClick="javascript:browseByCategory('All','None');return false;" style="color: #000000">All</a> </li>
+            <li role="separator" class="divider"></li>
+            <li><a href="#" onClick="javascript:browseByCategory('year','New');return false;" style="color: #000000">New</a> </li>
+            <li><a href="#" onClick="javascript:browseByCategory('year','Used');return false;" style="color: #000000">Used</a> </li>
+            <li><a href="#" onClick="javascript:browseByCategory('year','Antique');return false;" style="color: #000000">Antique</a> </li>
+            <li role="separator" class="divider"></li>
+            <li><a href="#" onClick="javascript:browseByCategory('category','SUV');return false;" style="color: #000000">SUV</a> </li>
+            <li><a href="#" onClick="javascript:browseByCategory('category','Sport');return false;" style="color: #000000">Sport</a> </li>
+            <li><a href="#" onClick="javascript:browseByCategory('category','Mini Van');return false;" style="color: #000000">Mini Van</a> </li>
+            <li><a href="#" onClick="javascript:browseByCategory('category','Truck');return false;" style="color: #000000">Truck</a> </li>
+            <li><a href="#" onClick="javascript:browseByCategory('category','Coupes');return false;" style="color: #000000">Coupes</a> </li>
+            <li><a href="#" onClick="javascript:browseByCategory('category','Sedan');return false;" style="color: #000000">Sedan</a> </li>
+            <li role="separator" class="divider"></li>
+            <li><a href="#" onClick="javascript:browseByCategory('make','BMW');" style="color: #000000">BMW</a> </li>
+            <li><a href="#" onClick="javascript:browseByCategory('make','Tesla');" style="color: #000000">Tesla</a> </li>
+            <li><a href="#" onClick="javascript:browseByCategory('make','Audi');" style="color: #000000">Audi</a> </li>
+            <li><a href="#" onClick="javascript:browseByCategory('make','Mercedes');" style="color: #000000">Mercedes</a> </li>
+            <li><a href="#" onClick="javascript:browseByCategory('make','Porsche');" style="color: #000000">Porsche</a> </li>
+            <li><a href="#" onClick="javascript:browseByCategory('make','Ford');" style="color: #000000">Ford</a> </li>
+            <li><a href="#" onClick="javascript:browseByCategory('make','Honda');" style="color: #000000">Honda</a> </li>
+            <li><a href="#" onClick="javascript:browseByCategory('make','Chrysler');" style="color: #000000">Chrysler</a> </li>
+            <li><a href="#" onClick="javascript:browseByCategory('make','GMC');" style="color: #000000">GMC</a> </li>
+            <li><a href="#" onClick="javascript:browseByCategory('make','Volkswagen');" style="color: #000000">Volkswagen</a> </li>
+            <li><a href="#" onClick="javascript:browseByCategory('make','Toyota');" style="color: #000000">Toyota</a> </li>
+            <li><a href="#" onClick="javascript:browseByCategory('make','Mazda');" style="color: #000000">Mazda</a> </li>
+          </ul>
+        </li>
+      </ul>
+      <!-- action menu -->
+      <ul class="nav navbar-nav">
+        <li class="dropdown"> <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true">Actions<span class="caret"></span></a>
+          <ul class="dropdown-menu" style="color: #000000">
+            <li><a href="#" onClick="javascript:createAnAuction();" style="color: #000000">Create An Auction</a> </li>
+            <li><a href="#" onClick="javascript:listMyAuctions();" style="color: #000000">List My Auctions</a> </li>
+            <li><a href="#" onClick="javascript:listMyBids();" style="color: #000000">List My Bids</a> </li>
+            <li role="separator" class="divider"></li>
+            <li><a href="#" onClick="javascript:teleMarketReports();" style="color: #000000">Telemarket Reports</a> </li>
+            <li><a href="#" onClick="javascript:terminateAuction();" style="color: #000000">Terminate Auction</a> </li>
+          </ul>
+        </li>
+      </ul>
+
+      <!-- Search text field and Submit button -->
+      <form class="navbar-form navbar-right" role="search">
+        <div class="form-group">
+          <input id="searchInputId" type="text" class="form-control" placeholder="Search" style="color: #116EC4; border-color: #116EC4" width="100%">
+        </div>
+        <button type="submit" class="btn btn-default" style="color: #116EC4; border-color: #116EC4" onClick="javascript:search(getValueById('searchInputId'))">Submit</button>&nbsp;&nbsp;
+        <span id="userNameId" style="color: #5E5E5E"></span>
+        <a id="signInId" style="color: #116EC4" href="#" onClick="javascript:signIn(getValueById('signInId'))">Sign in</a>
+      </form>
+
+    </div>
+  </div>
+  <hr style="border-color: #9E9E9E">
+</nav>
+<!-- top main menu end here -->
+
+<div id="DynamicPart" style="color: #000000">
+   <!--                          AJAX technology is used here
+      php files will compose html and the generated html will be put here by javascript. See eAuction.js for detail
+   -->
+</div>
+
+<!-- do not change anything below -->
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="js/jquery-1.11.3.min.js"></script>
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="js/bootstrap.js"></script>
+</body>
+</html>
